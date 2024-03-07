@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interview Helper</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container-main">
+        <div class="upload-container">
+            <div class="text-center sticky">
+            <h1 class="text-6xl">InterviewHelper</h1>
+            <br>
+            </div>
+            <div class="flex">
+                <div class="max-w-sm rounded overflow-hidden shadow-lg relative">
+                <img class="w-full" src="./manInsky.jpg" alt="Upload Resume">
+                <label for="resume-upload" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-none border border-white border-2 rounded-full px-3 py-1 text-sm font-semibold text-white cursor-pointer">
+                Upload Resume
+                </label>
+                <input type="file" id="resume-upload" class="hidden">
+            </div>
+                <div class="jd w-full px-6 py-4 ">
+                <textarea class="w-full h-80  resize-none " placeholder="Enter job description here..."></textarea>
+                <button class="inline-block bg-gray-300 rounded-full px-9 py-2 text-sm font-semibold text-gray-700 mt-auto relative bottom-0 left-1/2 transform -translate-x-1/2">Submit</button>
+            </div>
+        </div>
+    </div>
+    <div id="response-container">
+        <h1 class="text-center text-underline font-bold mb-4">Interview Questions</h1>
+        <div class="response w-full bg-snow px-6 py-4">
+        </div>
+    </div>
+</div>
+</body>
+</html>
