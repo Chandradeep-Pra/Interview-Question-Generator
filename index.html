@@ -1,38 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CV Interview Question Generator</title>
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Prep Ally</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/your-awesome-fontawesome-kit-code.js" crossorigin="anonymous"></script>
 </head>
 <body>
-
-<h1 class="display-3 text-white">Interview Question Generator</h1>
-<hr class="color-white">
-<div class="container">
-    <form id="cvForm">
-        <div class="form-group">
-            <label for="cv">Upload your CV (PDF):</label>
-            <input type="file" class="form-control-file" id="cv" name="cv" accept=".pdf">
+    <header class="center">
+        <h1>Interview <span style="color: #28a745;">Prep</span> Ally</h1>
+    </header>
+    <main class="center">
+        <div class="content-container">
+            <div class="cv-upload">
+                <svg width="100" height="100">
+                    <circle cx="50" cy="50" r="40" fill="#fff" stroke="#28a745" stroke-width="5"/>
+                    <path d="M40 50 L 60 70 L 50 80 L 40 70 Z" fill="#28a745"/>
+                </svg>
+                <h2>Upload Your CV</h2>
+                <input type="file" id="cv-input" accept=".doc,.docx,.pdf" disabled>
+                <p>Coming Soon! CV parsing for targeted questions.</p>
+            </div>
+            <div class="job-description">
+                <h2 style="color: #fff">Enter Job Description</h2>
+                <textarea id="job-description" rows="10" style="background: #f2f2f2; border: 1px solid #ccc;"></textarea>
+                <label for="experience-level" style="color: #fff">Experience Level:</label>
+                <select id="experience-level">
+                    <option value="">Select Level</option>
+                    <option value="entry">Entry Level</option>
+                    <option value="mid">Mid Level</option>
+                    <option value="senior">Senior Level</option>
+                </select>
+            </div>
         </div>
-        
-        <div class="form-group">
-            <label for="jobDescription">Job Description (optional):</label>
-            <textarea class="form-control" id="jobDescription" name="jobDescription" placeholder="Paste job description here..."></textarea>
-        </div>
-
-        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="generateQuestions()">Generate Interview Questions</button>
-    </form>
-
-    <div class="result mt-4" id="resultSection" style="display: none;">
-        <h2>Interview Questions:</h2>
-        <ul id="interviewQuestions"></ul>
-    </div>
-</div>
-
-<script src="script.js"></script>
-
+        <button id="generate-questions" style="background: #28a745; color: #fff; padding: 15px 30px; border: none; border-radius: 10px; cursor: pointer;">
+      Generate Interview Questions (Sample Questions)
+    </button>
+        <div id="results"></div>
+    </main>
+    <script src="script.js"></script>
 </body>
 </html>

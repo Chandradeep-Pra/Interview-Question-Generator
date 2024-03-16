@@ -1,5 +1,53 @@
-.container-main{
-    border: 2px solid red;
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: linear-gradient(to right, #f7931a, #ff4d4d);
+    display: flex; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+    min-height: 100vh; /* Set minimum height for full viewport */
+  }
+  
+  .center {
+    width: 80%; /* Define a maximum width for the centered content */
+    margin: 0 auto; /* Center the content horizontally */
+  }
+  
+  header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  h1 {
+    font-size: 3em;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .content-container {
     display: flex;
-    flex-direction: column;
-}
+    justify-content: space-between;
+  }
+  
+  .cv-upload, .job-description {
+    flex: 1;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  svg {
+    margin-bottom: 10px;
+  }
+  
+  textarea, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+    
