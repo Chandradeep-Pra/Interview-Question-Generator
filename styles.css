@@ -1,53 +1,59 @@
 body {
-    font-family: sans-serif;
-    margin: 0;
-    padding: 20px;
-    background: linear-gradient(to right, #f7931a, #ff4d4d);
-    display: flex; /* Center content vertically */
-    justify-content: center; /* Center content horizontally */
-    min-height: 100vh; /* Set minimum height for full viewport */
-  }
-  
-  .center {
-    width: 80%; /* Define a maximum width for the centered content */
-    margin: 0 auto; /* Center the content horizontally */
-  }
-  
-  header {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  h1 {
-    font-size: 3em;
-    color: #fff;
-    font-family: 'Montserrat', sans-serif;
-  }
-  
-  .content-container {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .cv-upload, .job-description {
-    flex: 1;
-    margin-bottom: 20px;
-    padding: 20px;
-    border-radius: 10px;
-    background: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  svg {
-    margin-bottom: 10px;
-  }
-  
-  textarea, select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 10px;
-  }
-  
-    
+  font-family: sans-serif;
+}
+
+.navbar {
+  background-color: #f2f2f2;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  display: flex; /* Ensure items are on the same line */
+  align-items: center; /* Vertically align items */
+}
+
+.navbar-brand svg {
+  margin-right: 10px;
+}
+
+.navbar-brand h1 {
+  color: #000;
+}
+
+.navbar-brand h1 span {
+  color: #28a745; /* Color for the specific span */
+}
+
+.content-container {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.job-description h2 {
+  color: #fff;
+}
+
+#job-description {
+  background: #f2f2f2;
+  border: 1px solid #ccc;
+  width: 80%;
+}
+
+#experience-level {
+  border: 2px solid #28a745;
+  padding: 15px 35px;
+  border-radius: 10px;
+}
+
+#generate-questions {
+  background: #28a745;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 40%;
+  margin-left: 10px;
+}
