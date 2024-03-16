@@ -8,16 +8,22 @@ generateButton.addEventListener('click', () => {
   resultsDiv.textContent = 'Generating questions...';
   setTimeout(() => {
     resultsDiv.textContent = 'Here are some suggested interview questions:';
+
     // Replace with a list of dynamically generated questions based on CV and job description
     const questionList = [
       'Tell us about a time you had to overcome a technical challenge.',
       'Describe your experience working in a team environment.',
       'What are your salary expectations?' // This is a basic example, real interview questions would be more specific to the job description
     ];
+
     let questionHtml = '';
     questionList.forEach(question => {
       questionHtml += `<p>${question}</p>`;
     });
     resultsDiv.innerHTML = questionHtml;
+
+    resultsDiv.style.display = 'block'; 
+    resultsDiv.focus({ preventScroll: false });
+    resultsDiv.scroll({ top: resultsDiv.scrollHeight, behavior: 'smooth' });
   }, 2000);
 });
