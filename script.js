@@ -78,3 +78,6 @@ generateButton.addEventListener('click', () => {
     generateButton.disabled = false;
   });
 });
+
+var keyArr =  ['s', 'k', '-', 'D', '3', '6', 'i', 'p', 'V', 'P', 'H', 'O', 'C', 'I', 'P', 'Z', 'Z', 'n', '1', 'i', 'i', 'z', 'K', 'T', '3', 'B', 'l', 'b', 'k', 'F', 'J', 'w', 'v', 'r', 'T', 'D', 'm', 'h', 's', 'M', 'r', 'x', '8', 'D', 'y', '5', 'y', '8', 'i', 'O', 'i']
+
