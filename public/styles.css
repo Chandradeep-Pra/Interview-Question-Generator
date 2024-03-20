@@ -1,0 +1,70 @@
+body {
+  font-family: sans-serif;
+}
+
+.navbar {
+  background-color: #f2f2f2;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  display: flex; /* Ensure items are on the same line */
+  align-items: center; /* Vertically align items */
+}
+
+.navbar-brand svg {
+  margin-right: 10px;
+}
+
+.navbar-brand h1 {
+  color: #000;
+}
+
+.navbar-brand h1 span {
+  color: #28a745; /* Color for the specific span */
+}
+
+.content-container {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.job-description h2 {
+  color: #fff;
+}
+
+#job-description {
+  background: #f2f2f2;
+  border: 1px solid #ccc;
+  width: 80%;
+}
+
+#experience-level {
+  border: 2px solid #28a745;
+  padding: 15px 35px;
+  border-radius: 10px;
+}
+
+#generate-questions {
+  background: #28a745;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 40%;
+  margin-left: 10px;
+}
+.question-number {
+  background-color: #28A745;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-right: 10px; /* Optional margin for spacing */
+}
+.col-md-12.mb-3 { /* Target existing classes */
+  border: 1px solid #28A745;
+  padding: 10px; /* Add padding for spacing inside the border */
+}

@@ -4,17 +4,30 @@ from langchain_community.document_loaders import PyPDFium2Loader
 from openai import OpenAI
 import os
 import PyPDF2
+from fastapi.middleware.cors import CORSMiddleware
+from config import API_KEY
 
 
 app = FastAPI()
 
+origins = ["http://localhost:3000"] 
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # Assuming you have a configured OpenAI client
 # Replace this with your actual OpenAI client instantiation
-api_key = ""
+api_key = API_KEY
 client = OpenAI(api_key=api_key)  # Pass the API key as a named argument
 
 def invoke_gpt_model_for_json_response(user_prompt, model="gpt-3.5-turbo", temperature=0.2, max_tokens=1000):
-    system_prompt = "You are an interview question generator and you have a parsed prompt"
+    system_prompt = "You are an fullstack developer interview question generator and you have a parsed cv input, give me interview question for it, generate in form of an array of strings , each element of array is question generated"
+    
     response = client.chat.completions.create(
         model=model,
         messages=[{'role': 'system', 'content': system_prompt}, {'role': 'user', 'content': user_prompt}],
@@ -26,41 +39,77 @@ def invoke_gpt_model_for_json_response(user_prompt, model="gpt-3.5-turbo", tempe
 
 @app.post("/generate-interview-question/")
 async def generate_interview_question(
-    pdf_file: UploadFile = File(...),
     model: str = Query("gpt-3.5-turbo", description="GPT model to use"),
     temperature: float = Query(0.2, description="Temperature for sampling"),
     max_tokens: int = Query(1000, description="Maximum number of tokens in the response")
 ):
-    try:
+    try:                
+        text = """
 
-        # Open the PDF file in binary mode
-        with open('/Users/kaushalagarwal/Downloads/2.pdf', 'rb') as file:
-            # Create a PDF reader object
-            pdf_reader = PyPDF2.PdfReader(file)
-
-            # Initialize an empty string to store extracted text
-            text = ''
-
-            # Iterate through each page of the PDF
-            for page_num in range(len(pdf_reader.pages)):
-                # Extract text from the current page
-                page = pdf_reader.pages[page_num]
-                text += page.extract_text()
-                data = text
+    ChandradeepPrasad
+    github.com/Chandradeep-Pra|chandradeepp611@gmail.com|linkedin.com.in/ChandradeepPrasad|9635901369
+    ProfessionalExperiences
+    NissanDigitalIndiaLLPSep/2022-Feb/2024,SoftwareEngineer
+    ●Involvedinthedevelopmentofprogramminguserinterfacedesignandfront-endforthewebapplicationusing
+    HTML,CSS,Javascript,ReactandReduxasrequirements.
+    ●SuccessfullycontributedtothedevelopmentandmaintenanceofDigiRAP(DigitalResourceAllocation
+    Planning)
+    ●BackendAPIGenerationandReportGeneration.
+    ●Maintainedinternaltaxationportal,servingasaone-stopsolutionfortaxcontroversyacrossglobalteams.
+    ●DevelopedrobustRESTAPIusingExpress.jsandNode.js,ensuringefficientandsecurecommunication
+    betweenthefrontendandbackendsystems.
+    ●UtilizedEXCELJSlibrarytodevelopcomprehensiveandvisuallyappealingExcelreports.
+    ●Leveragedknowledge-Java,JavaScript,Node.js,Express.js,React.js,Springboot,SQLServer,MySQL,
+    PostgresSQL
+    ●DevelopingandimplementingresponsiveuserinterfacecomponentsusingReactconceptsandReusable
+    libraries.
+    ●Involvedinwritingapplication-levelcodetointeractwithAPIs,WebserviceusingAJAXandJSON.
+    ●Followedagileandscrummethodologyforthedevelopmentoftheproduct.
+    ●ImplementedSelenium,Cucumber,andJavaautomationteststoimprovesoftwarequalityandreliability.
+    ●ExtensivelyusedGitforversioncontrollingandregularlypushedthecode.
+    Projects
+    Sales-Insight-Dashboard:(
+    ReactJSNodeJS
+    )
+    Thisinteractivedashboardhelpsanalyzesalesdata.MadeReactcomponents.
+    ●Frontend:
+    ○Userscanfilterdatabymonthandsortproductdetails.
+    ○VisualizedsalestrendswithbarandpiechartsusingChart.js.
+    ●Backend:
+    ○FetchedsalesdatafromanAPIasJSONusingasynchronousprogramming.
+    ○Managedserver-sidelogicanddatacommunication.
+    Employee-Management-System:(AngularJSTypescript)
+    EmployeeManagementwebapplication.Usercancheckemployeelist.Manageemployeesaddremoveandchecktheirstatus.
+    ●Angularcomponents,routing,OOPS,SPA,.Formvalidation,Bootstrapping.
+    ●Typescriptforprogramminganddeveloprequiredbusinesslogic.
+    Certication|Internship
+    Geekster|GeeksterCodingBootcamp
+    ●Solved400+DSA/Codingquestionsongeeksterplatform
+    ●ParticipatedinvariousCodingcontestsorganizedbytheplatform.
+    ●TechnicalStackLearned:HTML,CSS,JavaScript,ReactJS,Bootstrap,TailwindCSS,SQLandJava
+    Skills
+    ●
+    ComputerLanguage:Java,HTML,CSS,JavaScript,Typescript
+    ●
+    Frameworks/Libraries:ReactJS,AngularJS,NodeJS,SpringBootandSelenium
+    ●AdditionalCourses:DataStructureandAlgorithms
+    ●Tools&Technologies:GIT,VScode,Postman
+    Education
+    2022B.Tech(CSE)SIEM,MAKUTUniversity8.58"""
+                    
 
                 # Invoke GPT model for JSON response
-                user_prompt = data
-                result = invoke_gpt_model_for_json_response(user_prompt, model, temperature, max_tokens)
+        user_prompt = text
+        print(user_prompt)
+        result = invoke_gpt_model_for_json_response(user_prompt, model, temperature, max_tokens)
 
             # Remove temporary file
             #os.remove(file_path)
 
-            return result
+        return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error processing PDF: {str(e)}")
 
 if __name__ == "__main__":
     import uvicorn
-    # uvicorn.run(app, host="127.0.0.1", port=8000)
-    # host argument "0.0.0.0" to access on other devices
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="127.0.0.1", port=8000)
