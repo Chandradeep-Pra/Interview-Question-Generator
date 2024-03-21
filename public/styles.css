@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  /* background-color: #bbd8ba7d; */
 }
 
 .navbar {
@@ -25,10 +26,17 @@ body {
 }
 
 .content-container {
-  background-color: #fff;
+  background-color: none;
+  /* border: 0.3px solid rgba(135, 67, 195); */
+  background-color: rgb(159, 198, 182);
+  border-top: 6px solid rgb(135, 67, 195);
   border-radius: 5px;
   padding: 20px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); */
+  /* box-shadow: 0px 20px 50px rgba(158, 91, 216, 0.8); */
+}
+.content-container:hover{
+  box-shadow: 0px 20px 50px rgba(198, 174, 219, 0.8);
 }
 
 .job-description h2 {
@@ -67,4 +75,35 @@ body {
 .col-md-12.mb-3 { /* Target existing classes */
   border: 1px solid #28A745;
   padding: 10px; /* Add padding for spacing inside the border */
+}
+/* Style the label like a button */
+label[for="cv-input"] {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #28A745;
+  color: #fff;
+}
+
+/* Hide the actual file input */
+#cv-input {
+  display: none;
+}
+
+/* Style the selected file name display */
+#selected-file {
+  /* margin-left: 10px; */
+  display: flex;
+  align-items: center;
+}
+.file-name {
+  color: #999; /* Initial color, gray */
+  margin-left: 5px; /* Add margin after file name */
+}
+
+#mic:hover{
+  cursor: pointer;
+  color: #28A745;
 }

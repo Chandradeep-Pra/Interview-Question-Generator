@@ -6,9 +6,12 @@ import os
 import PyPDF2
 from fastapi.middleware.cors import CORSMiddleware
 from config import API_KEY
-
+from pydantic import BaseModel
 
 app = FastAPI()
+
+class InterviewTextInput(BaseModel):
+    text: str
 
 origins = ["http://localhost:3000"] 
 
@@ -39,66 +42,14 @@ def invoke_gpt_model_for_json_response(user_prompt, model="gpt-3.5-turbo", tempe
 
 @app.post("/generate-interview-question/")
 async def generate_interview_question(
+    request_body: InterviewTextInput,
     model: str = Query("gpt-3.5-turbo", description="GPT model to use"),
     temperature: float = Query(0.2, description="Temperature for sampling"),
     max_tokens: int = Query(1000, description="Maximum number of tokens in the response")
 ):
     try:                
-        text = """
-
-    ChandradeepPrasad
-    github.com/Chandradeep-Pra|chandradeepp611@gmail.com|linkedin.com.in/ChandradeepPrasad|9635901369
-    ProfessionalExperiences
-    NissanDigitalIndiaLLPSep/2022-Feb/2024,SoftwareEngineer
-    ●Involvedinthedevelopmentofprogramminguserinterfacedesignandfront-endforthewebapplicationusing
-    HTML,CSS,Javascript,ReactandReduxasrequirements.
-    ●SuccessfullycontributedtothedevelopmentandmaintenanceofDigiRAP(DigitalResourceAllocation
-    Planning)
-    ●BackendAPIGenerationandReportGeneration.
-    ●Maintainedinternaltaxationportal,servingasaone-stopsolutionfortaxcontroversyacrossglobalteams.
-    ●DevelopedrobustRESTAPIusingExpress.jsandNode.js,ensuringefficientandsecurecommunication
-    betweenthefrontendandbackendsystems.
-    ●UtilizedEXCELJSlibrarytodevelopcomprehensiveandvisuallyappealingExcelreports.
-    ●Leveragedknowledge-Java,JavaScript,Node.js,Express.js,React.js,Springboot,SQLServer,MySQL,
-    PostgresSQL
-    ●DevelopingandimplementingresponsiveuserinterfacecomponentsusingReactconceptsandReusable
-    libraries.
-    ●Involvedinwritingapplication-levelcodetointeractwithAPIs,WebserviceusingAJAXandJSON.
-    ●Followedagileandscrummethodologyforthedevelopmentoftheproduct.
-    ●ImplementedSelenium,Cucumber,andJavaautomationteststoimprovesoftwarequalityandreliability.
-    ●ExtensivelyusedGitforversioncontrollingandregularlypushedthecode.
-    Projects
-    Sales-Insight-Dashboard:(
-    ReactJSNodeJS
-    )
-    Thisinteractivedashboardhelpsanalyzesalesdata.MadeReactcomponents.
-    ●Frontend:
-    ○Userscanfilterdatabymonthandsortproductdetails.
-    ○VisualizedsalestrendswithbarandpiechartsusingChart.js.
-    ●Backend:
-    ○FetchedsalesdatafromanAPIasJSONusingasynchronousprogramming.
-    ○Managedserver-sidelogicanddatacommunication.
-    Employee-Management-System:(AngularJSTypescript)
-    EmployeeManagementwebapplication.Usercancheckemployeelist.Manageemployeesaddremoveandchecktheirstatus.
-    ●Angularcomponents,routing,OOPS,SPA,.Formvalidation,Bootstrapping.
-    ●Typescriptforprogramminganddeveloprequiredbusinesslogic.
-    Certication|Internship
-    Geekster|GeeksterCodingBootcamp
-    ●Solved400+DSA/Codingquestionsongeeksterplatform
-    ●ParticipatedinvariousCodingcontestsorganizedbytheplatform.
-    ●TechnicalStackLearned:HTML,CSS,JavaScript,ReactJS,Bootstrap,TailwindCSS,SQLandJava
-    Skills
-    ●
-    ComputerLanguage:Java,HTML,CSS,JavaScript,Typescript
-    ●
-    Frameworks/Libraries:ReactJS,AngularJS,NodeJS,SpringBootandSelenium
-    ●AdditionalCourses:DataStructureandAlgorithms
-    ●Tools&Technologies:GIT,VScode,Postman
-    Education
-    2022B.Tech(CSE)SIEM,MAKUTUniversity8.58"""
-                    
-
-                # Invoke GPT model for JSON response
+        text = request_body.text
+        # Invoke GPT model for JSON response
         user_prompt = text
         print(user_prompt)
         result = invoke_gpt_model_for_json_response(user_prompt, model, temperature, max_tokens)

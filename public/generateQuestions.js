@@ -6,10 +6,18 @@ export async function generateInterviewQuestion(text, model = "gpt-3.5-turbo", t
     console.log("From gnerate qs" , text);
   
     try {
-        const formData = new FormData();
+      const bodyData = {
+        text:text
+      }
+      const headers = {
+        "Content-Type": "application/json"
+      };
+        //const formData = new FormData();
+        const jsonData = JSON.stringify(bodyData)
         const interviewQuestionResponse = await fetch("http://127.0.0.1:8000/generate-interview-question/", {
         method: "POST",
-        headers: { "Content-Type": "application/json" }
+        headers: headers,
+        body: jsonData
       });
   
       if (!interviewQuestionResponse.ok) {

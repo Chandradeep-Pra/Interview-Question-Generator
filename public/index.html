@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interview Prep Ally</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- <script src="https://kit.fontawesome.com/your-awesome-fontawesome-kit-code.js" crossorigin="anonymous"></script> -->
+    <script src="https://kit.fontawesome.com/your-awesome-fontawesome-kit-code.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js" integrity="sha512-Z8CqofpIcnJN80feS2uccz+pXWgZzeKxDsDNMD/dJ6997/LSRY+W4NmEt9acwR+Gt9OHN0kkI1CTianCwoqcjQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
 
 </head>
-<body>
+<body style="background-color: #bbd8ba7d;">
     <!-- <header class="navbar navbar-expand bg-light shadow-sm">  
         <div class="container-fluid d-flex align-items-center"> 
              <a class="navbar-brand" href="#"> 
@@ -95,16 +95,23 @@
           </header>
           <main class="center container-fluid mt-4">
             <div class="row justify-content-center">
-              <div class="content-container col-8">
+              <div class="content-container col-9">
                 <div class="cv-upload">
                   <h2>Upload Your CV</h2>
-                  <input type="file" id="cv-input" accept=".doc,.docx,.pdf">
-                  <p>Coming Soon! CV parsing for targeted questions.</p>
+                  <!-- <input type="file" id="cv-input" accept=".doc,.docx,.pdf"> -->
+                  <label for="cv-input">Select a file</label>
+                  <input type="file" id="cv-input" accept=".doc,.docx,.pdf" hidden>
+                  <br>
+                  
+                  <span id="selected-file"></span>
+                  <br>
+                  <!-- <p>Coming Soon! CV parsing for targeted questions.</p> -->
                 </div>
                 <div class="job-description">
-                  <h2>Enter Job Description</h2>
-                  <textarea id="job-description" rows="10" placeholder="Enter job description"></textarea>
+                  <!-- <h2>Enter Job Description</h2> -->
+                  <textarea id="job-description" rows="10" placeholder="  Enter job description"></textarea>
                 </div>
+                <br>
                 <div class="d-flex">
                   <select id="experience-level" class="ml-3">
                     <option value="">Select Exp Level</option>
@@ -118,10 +125,10 @@
               </div>
             </div>
         </main>
-        <div>
+        <!-- <div>
           <input type="file" id="test-input" accept=".doc,.docx,.pdf">
           <button id="test-btn">Test</button>
-        </div>
+        </div> -->
         <div class="center container-fluid mt-4" id="results" placeholder="Extracted PDF result her ... " ></div>
         <script src="script.js" type="module"></script>
         <script src="pdfText.js" type="module"></script>
