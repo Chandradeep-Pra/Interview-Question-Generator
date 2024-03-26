@@ -3,7 +3,7 @@ const selectedFileDisplay = document.getElementById('selected-file');
 const fileNameElement = selectedFileDisplay.querySelector('.file-name');
 const companyInput = document.getElementById("com-input");
 
-// Company name selection functionality
+// Company name selection functionality - Starts
 const companyNames = [
   "Google",
   "Amazon",
@@ -17,22 +17,23 @@ const companyNames = [
   "Airbnb"
 ];
 
-const handleInputChange = (event) =>{
+let selectedSuggestion = null; // Track the currently selected suggestion object
+
+const handleInputChange = (event) => {
+  //const currentCompanyValue = companyInput.value;
+  //console.log("Current company input value:", currentCompanyValue);
   const userInput = event.target.value.toLowerCase();
   const suggestions = companyNames.filter(company => company.toLowerCase().startsWith(userInput));
 
-  // Clear any existing suggestion list (more robust approach)
-const existingSuggestionList = companyInput.parentNode.querySelector(".suggestion-list");
-if (existingSuggestionList) {
-  companyInput.parentNode.removeChild(existingSuggestionList);
-}
+  // Create a suggestion list element (if it doesn't exist already)
+  let suggestionList = companyInput.parentNode.querySelector(".suggestion-list");
+  if (!suggestionList) {
+    suggestionList = document.createElement("ul");
+    suggestionList.classList.add("suggestion-list"); // Add a CSS class for styling (optional)
+  }
 
-
-  const suggestionList = document.createElement("ul");
-  suggestionList.classList.add("suggestion-list");
-
-  // // Clear previous suggestions (if any)
-  // companyInput.parentNode.removeChild(suggestionList); // More robust approach
+  // Clear previous suggestions
+  suggestionList.innerHTML = ''; // More efficient than removing and recreating the list
 
   // No suggestions found
   if (suggestions.length === 0) {
@@ -42,31 +43,77 @@ if (existingSuggestionList) {
 
     newCompanyItem.addEventListener("click", () => {
       companyInput.value = userInput;
-      // Add new company to the list and suggestions
       companyNames.push(userInput);
       suggestionList.remove(); // Remove suggestion list on selection
     });
 
     suggestionList.appendChild(newCompanyItem);
-  }else {
-    // Create list items for existing suggestions
+  } else {
+    // Create list items for suggestions
     suggestions.forEach(suggestion => {
       const suggestionItem = document.createElement("li");
       suggestionItem.innerText = suggestion;
       suggestionItem.addEventListener("click", () => {
+        //console.log("Clicked inside ");
         companyInput.value = suggestion;
+        selectedSuggestion = suggestion; // Update selected suggestion
+        //console.log(companyInput.value);
         suggestionList.remove(); // Remove suggestion list on selection
       });
+
       suggestionList.appendChild(suggestionItem);
     });
   }
 
   // Append suggestion list to the input element's parent node
   companyInput.parentNode.appendChild(suggestionList);
+
+  //console.log(companyInput.value);
 };
 
 companyInput.addEventListener("keyup", handleInputChange);
 
+
+// companyInput.addEventListener("keydown", (event) => {
+//   // Prevent default behavior only for arrow keys
+//   if (!["ArrowDown", "ArrowUp"].includes(event.key)) {
+//     return; // Not an arrow key, skip
+//   }
+
+//   event.preventDefault();
+
+//   if (!selectedSuggestion || event.key !== "Enter") {
+//     return; // No selection or not Enter key, skip
+//   }
+
+//   const suggestionIndex = companyNames.indexOf(selectedSuggestion);
+//   if (suggestionIndex === -1) {
+//     return; // Selected suggestion not found in the list (shouldn't happen)
+//   }
+
+//   if (event.key === "ArrowDown" && suggestionIndex < companyNames.length - 1) {
+//     selectedSuggestion = companyNames[suggestionIndex + 1];
+//   } else if (event.key === "ArrowUp" && suggestionIndex > 0) {
+//     selectedSuggestion = companyNames[suggestionIndex - 1];
+//   }
+
+//   // Update input value with the newly selected suggestion
+//   companyInput.value = selectedSuggestion;
+
+//   // Highlight the newly selected suggestion in the list (optional)
+//   const selectedListItem = suggestionList.querySelector(`li:contains("${selectedSuggestion}")`);
+//   if (selectedListItem) {
+//     selectedListItem.classList.add('active'); // Add a CSS class for styling (optional)
+//     // Remove 'active' class from previously selected item (optional)
+//   }
+// });
+// Company name selection functionality - Ends
+
+// Function to get company value
+function getCompanyInputValue() {
+  //console.log(companyInput.value);
+  return companyInput.value;
+}
 
 
 cvInput.addEventListener('change', (event) => {
@@ -93,4 +140,6 @@ cvInput.addEventListener('change', (event) => {
       selectedFileDisplay.appendChild(fileNameElement); // Append file name first
     }
   });
+
+  export { getCompanyInputValue };
   
