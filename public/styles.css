@@ -67,6 +67,10 @@ body {
   border: 1px solid #ccc; /* Add a border */
   background-color: #fff; /* Set background color */
 }
+.suggestion-list :hover{
+  background-color: #28a745;
+  color: white;
+}
 .new-company {
   font-weight: bold; /* Make new entries bold */
   color: #333; /* Change text color for new entries */
