@@ -1,5 +1,5 @@
 //const { text } = require("body-parser");
-export async function generateInterviewQuestion(text, model = "gpt-3.5-turbo", temperature = 0.7, maxTokens = 1500) {
+export async function generateInterviewQuestion(text,companyName,expLvl,jobDesc, model = "gpt-3.5-turbo", temperature = 0.7, maxTokens = 1500) {
     // const userPrompt = {
     //   user_prompt: text
     // };
@@ -7,7 +7,10 @@ export async function generateInterviewQuestion(text, model = "gpt-3.5-turbo", t
   
     try {
       const bodyData = {
-        text:text
+        text:text,
+        company_name :companyName,
+        experience_level: expLvl,
+        job_description: jobDesc
       }
       const headers = {
         "Content-Type": "application/json"
