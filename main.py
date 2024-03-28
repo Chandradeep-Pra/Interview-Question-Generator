@@ -13,7 +13,8 @@ app = FastAPI()
 class InterviewTextInput(BaseModel):
     cv_parsed : str
     company_name : str
-    work_experience : str
+    experience_level : str
+    job_description : str
 
 origins = ["http://localhost:3000"] 
 
@@ -52,9 +53,11 @@ async def generate_interview_question(
     try:                
         text = request_body.cv_parsed
         company_name = request_body.company_name
-        experience_level = request_body.work_experience
+        experience_level = request_body.experience_level
+        job_description = request_body.job_description
+        print(request_body)
         # Invoke GPT model for JSON response
-        user_prompt = f"This is my parse cv {text} and I am applying for the company name {company_name} and they are looking for a candidate with experience level of {experience_level}"
+        user_prompt = f"This is my parse cv {text} and I am applying for this company - {company_name} and they are looking for a candidate with experience level of {experience_level} and the job description states {job_description}, suggest me 10 good questions for the interview for this, give the output as questions only in array"
         print(user_prompt)
         result = invoke_gpt_model_for_json_response(user_prompt, model, temperature, max_tokens)
 

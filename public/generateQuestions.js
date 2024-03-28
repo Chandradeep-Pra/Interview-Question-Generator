@@ -12,7 +12,7 @@ export async function generateInterviewQuestion(text,expLvl,jobDesc,companyName,
   
     try {
       const bodyData = {
-        text:text,
+        cv_parsed:text,
         company_name :companyName,
         experience_level: expLvl,
         job_description: jobDesc
