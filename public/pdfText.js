@@ -1,8 +1,13 @@
 import { generateInterviewQuestion } from './generateQuestions.js';
+import { getCompanyInputValue } from './script.js'
 
 const pdfInput = document.getElementById("cv-input");
 const testBtn = document.getElementById("generate-questions");
 const result = document.getElementById("results");
+const expLvl = document.getElementById("experience-level");
+const jobDesc = document.getElementById("job-description");
+
+
 
 
 // const totoDiv = document.createElement("div");
@@ -47,7 +52,11 @@ testBtn.addEventListener("click", ()=>{
         extractedText=data
         //result.innerText=data;
         console.log(typeof extractedText);
-        generateInterviewQuestion(extractedText)
+        const expLvlValue = expLvl.value;
+        const jobDescValue = jobDesc.value;
+        const companyName = getCompanyInputValue();
+        console.log(companyName);
+        generateInterviewQuestion(extractedText,expLvlValue,jobDescValue,companyName)
          .then(inteviewQuestionData => {
             //result.innerText=inteviewQuestionData.interview_question;
             const questions =  inteviewQuestionData.interview_question;

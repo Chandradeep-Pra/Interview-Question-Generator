@@ -11,7 +11,10 @@ from pydantic import BaseModel
 app = FastAPI()
 
 class InterviewTextInput(BaseModel):
-    text: str
+    cv_parsed : str
+    company_name : str
+    experience_level : str
+    job_description : str
 
 origins = ["http://localhost:3000"] 
 
@@ -29,7 +32,7 @@ api_key = API_KEY
 client = OpenAI(api_key=api_key)  # Pass the API key as a named argument
 
 def invoke_gpt_model_for_json_response(user_prompt, model="gpt-3.5-turbo", temperature=0.2, max_tokens=1000):
-    system_prompt = "You are an fullstack developer interview question generator and you have a parsed cv input, give me interview question for it, generate in form of an array of strings , each element of array is question generated"
+    system_prompt = "You are an fullstack developer interview question generator and you have a parsed cv as user input, give me interview question for it, generate in form of an array of strings , each element of array is question generated"
     
     response = client.chat.completions.create(
         model=model,
@@ -48,9 +51,13 @@ async def generate_interview_question(
     max_tokens: int = Query(1000, description="Maximum number of tokens in the response")
 ):
     try:                
-        text = request_body.text
+        text = request_body.cv_parsed
+        company_name = request_body.company_name
+        experience_level = request_body.experience_level
+        job_description = request_body.job_description
+        print(request_body)
         # Invoke GPT model for JSON response
-        user_prompt = text
+        user_prompt = f"This is my parse cv {text} and I am applying for this company - {company_name} and they are looking for a candidate with experience level of {experience_level} and the job description states {job_description}, suggest me 10 good questions for the interview for this, give the output as questions only in array"
         print(user_prompt)
         result = invoke_gpt_model_for_json_response(user_prompt, model, temperature, max_tokens)
 
