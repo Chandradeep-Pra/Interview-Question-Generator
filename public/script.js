@@ -73,42 +73,6 @@ const handleInputChange = (event) => {
 
 companyInput.addEventListener("keyup", handleInputChange);
 
-
-// companyInput.addEventListener("keydown", (event) => {
-//   // Prevent default behavior only for arrow keys
-//   if (!["ArrowDown", "ArrowUp"].includes(event.key)) {
-//     return; // Not an arrow key, skip
-//   }
-
-//   event.preventDefault();
-
-//   if (!selectedSuggestion || event.key !== "Enter") {
-//     return; // No selection or not Enter key, skip
-//   }
-
-//   const suggestionIndex = companyNames.indexOf(selectedSuggestion);
-//   if (suggestionIndex === -1) {
-//     return; // Selected suggestion not found in the list (shouldn't happen)
-//   }
-
-//   if (event.key === "ArrowDown" && suggestionIndex < companyNames.length - 1) {
-//     selectedSuggestion = companyNames[suggestionIndex + 1];
-//   } else if (event.key === "ArrowUp" && suggestionIndex > 0) {
-//     selectedSuggestion = companyNames[suggestionIndex - 1];
-//   }
-
-//   // Update input value with the newly selected suggestion
-//   companyInput.value = selectedSuggestion;
-
-//   // Highlight the newly selected suggestion in the list (optional)
-//   const selectedListItem = suggestionList.querySelector(`li:contains("${selectedSuggestion}")`);
-//   if (selectedListItem) {
-//     selectedListItem.classList.add('active'); // Add a CSS class for styling (optional)
-//     // Remove 'active' class from previously selected item (optional)
-//   }
-// });
-// Company name selection functionality - Ends
-
 // Function to get company value
 function getCompanyInputValue() {
   //console.log(companyInput.value);
@@ -118,7 +82,7 @@ function getCompanyInputValue() {
 
 cvInput.addEventListener('change', (event) => {
     const file = event.target.files[0];
-    const hasPdfExtension = file?.name.toLowerCase().endsWith('.pdf'); // Check for PDF extension (optional)
+    const hasPdfExtension = file?.name.toLowerCase().endsWith('.pdf');
   
     selectedFileDisplay.innerHTML = ''; // Clear existing content
   

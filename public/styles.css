@@ -1,130 +1,16 @@
-body {
-  font-family: sans-serif;
-  /* background-color: #bbd8ba7d; */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.navbar {
-  background-color: #f2f2f2;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+.screen-max-width {
+  margin-inline-start: auto;
+  margin-inline-end: auto;
+  position: relative;
+  max-width: 1120px;
 }
 
-.navbar-brand {
-  display: flex; /* Ensure items are on the same line */
-  align-items: center; /* Vertically align items */
-}
-
-.navbar-brand svg {
-  margin-right: 10px;
-}
-
-.navbar-brand h1 {
-  color: #000;
-}
-
-.navbar-brand h1 span {
-  color: #28a745; /* Color for the specific span */
-}
-
-.content-container {
-  background-color: none;
-  /* border: 0.3px solid rgba(135, 67, 195); */
-  background-color: rgb(159, 198, 182);
-  border-top: 6px solid rgb(135, 67, 195);
-  border-radius: 5px;
-  padding: 20px;
-  /* box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); */
-  /* box-shadow: 0px 20px 50px rgba(158, 91, 216, 0.8); */
-}
-.content-container:hover{
-  box-shadow: 0px 20px 50px rgba(198, 174, 219, 0.8);
-}
-
-.job-description h2 {
-  color: #fff;
-}
-
-#job-description {
-  background: #f2f2f2;
-  border: 1px solid #ccc;
-  width: 80%;
-}
-
-#experience-level {
-  border: 2px solid #28a745;
-  padding: 15px 35px;
-  border-radius: 10px;
-}
-#com-input{
-  border: 2px solid #28a745;
-  padding: 10px 20px;
-  border-radius: 10px;
-
-}
-.suggestion-list {
-  list-style: none; /* Remove default bullet points */
-  padding: 0; /* Remove default padding */
-  margin: 0; /* Remove default margin */
-  border: 1px solid #ccc; /* Add a border */
-  background-color: #fff; /* Set background color */
-}
-.suggestion-list :hover{
-  background-color: #28a745;
-  color: white;
-}
-.new-company {
-  font-weight: bold; /* Make new entries bold */
-  color: #333; /* Change text color for new entries */
-}
-
-#generate-questions {
-  background: #28a745;
-  color: #fff;
-  padding: 5px 10px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  width: 40%;
-  margin-left: 10px;
-}
-.question-number {
-  background-color: #28A745;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
-  margin-right: 10px; /* Optional margin for spacing */
-}
-.col-md-12.mb-3 { /* Target existing classes */
-  border: 1px solid #28A745;
-  padding: 10px; /* Add padding for spacing inside the border */
-}
-/* Style the label like a button */
-label[for="cv-input"] {
-  display: inline-block;
-  padding: 10px 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: #28A745;
-  color: #fff;
-}
-
-/* Hide the actual file input */
-#cv-input {
-  display: none;
-}
-
-/* Style the selected file name display */
-#selected-file {
-  /* margin-left: 10px; */
-  display: flex;
-  align-items: center;
-}
-.file-name {
-  color: #999; /* Initial color, gray */
-  margin-left: 5px; /* Add margin after file name */
-}
-
-#mic:hover{
-  cursor: pointer;
-  color: #28A745;
+.candiate-input_container {
+  @apply relative sm:w-[70vw] w-[88vw] md:h-[70vh] sm:h-[50vh] h-[35vh]
 }
